@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: voronovsky
+      changes:
+        - createTable:
+            tableName: city
+            columns:
+              - column:
+                  name: cityname
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+                    unique: true
