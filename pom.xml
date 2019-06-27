@@ -127,17 +127,17 @@
 				<configuration>
 					<check>
 						<haltOnFailure>true</haltOnFailure>
-						<branchRate>75</branchRate>
-						<lineRate>85</lineRate>
-						<totalBranchRate>75</totalBranchRate>
-						<totalLineRate>85</totalLineRate>
-						<packageLineRate>75</packageLineRate>
-						<packageBranchRate>85</packageBranchRate>
+						<branchRate>40</branchRate>
+						<lineRate>45</lineRate>
+						<totalBranchRate>40</totalBranchRate>
+						<totalLineRate>45</totalLineRate>
+						<packageLineRate>40</packageLineRate>
+						<packageBranchRate>45</packageBranchRate>
 						<regexes>
 							<regex>
 								<pattern>com.baeldung.algorithms.dijkstra.*</pattern>
-								<branchRate>60</branchRate>
-								<lineRate>50</lineRate>
+								<branchRate>40</branchRate>
+								<lineRate>35</lineRate>
 							</regex>
 						</regexes>
 					</check>
