@@ -46,20 +46,22 @@ public class AliveStudentService implements StudentService {
 
     @Override
     public StudentDto getByCity(String city) {
-        List<StudentDto> resultList = studentRepository.getByCity(city);
-        return (StudentDto) resultList
-                .stream()
-                .map(a->studentMapper.toEntity(a))
-                .collect(Collectors.toList());
+//        List<StudentDto> resultList = studentRepository.getByCity(city);
+//        return (StudentDto) resultList
+//                .stream()
+//                .map(a->studentMapper.toEntity(a))
+//                .collect(Collectors.toList());
+        return null;
     }
 
     @Override
     public StudentDto getStudentByNameAndAge(String name, Integer age) {
-        List<StudentDto> resultList = studentRepository.getStudentByNameAndAge(name,age);
-        return (StudentDto) resultList
-                .stream()
-                .map(a->studentMapper.toEntity(a))
-                .collect(Collectors.toList());
+//        List<StudentDto> resultList = studentRepository.getStudentByNameAndAge(name,age);
+//        return (StudentDto) resultList
+//                .stream()
+//                .map(a->studentMapper.toEntity(a))
+//                .collect(Collectors.toList());
+        return null;
     }
 
 }

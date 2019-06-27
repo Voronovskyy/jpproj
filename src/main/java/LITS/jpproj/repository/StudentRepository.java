@@ -8,6 +8,6 @@ import java.util.List;
 
 
 public interface StudentRepository extends JpaRepository<Student,Integer> {
-    List<StudentDto> getStudentByNameAndAge(String name, Integer age);
-    List<StudentDto> getByCity(String city);
+//    List<StudentDto> getStudentByNameAndAge(String name, Integer age);
+//    List<StudentDto> getByCity(String city);
 }
