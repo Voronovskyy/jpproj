@@ -12,7 +12,7 @@ public interface StudentService {
 
     StudentDto save(StudentDto student);
 
-    List<StudentDto> getStudentByNameAndAge(String name, Integer id);
+    StudentDto getStudentByNameAndAge(String name, Integer id);
 
     StudentDto getByCity(String city);
 }

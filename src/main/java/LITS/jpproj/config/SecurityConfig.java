@@ -2,6 +2,7 @@ package LITS.jpproj.config;
 
 import LITS.jpproj.security.JwtAuthenticationEntryPoint;
 import LITS.jpproj.security.JwtAuthenticationTokenFilter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +27,7 @@ import java.util.Arrays;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@Slf4j
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     protected JwtAuthenticationEntryPoint unauthorizedHandler;
@@ -36,11 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
+        log.debug("Exception in class SecurityConfig (authenticationManagerBean)");
         return super.authenticationManagerBean();
     }
 
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
+        log.debug("Exception in class SecurityConfig (globalUserDetails)");
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
     }
@@ -53,25 +57,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
+        log.debug("Exception in class SecurityConfig (authenticationTokenFilterBean)");
         return new JwtAuthenticationTokenFilter();
     }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+        log.debug("Exception in class SecurityConfig (configure)");
         httpSecurity
                 .cors().and()
                 .csrf().disable()
-
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-
                 .authorizeRequests()
-
                 .antMatchers("/**/login").permitAll()
 //                .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
                 .antMatchers("/api/AllUsers").hasRole("ADMIN")
-
                 .anyRequest().authenticated();
 
         httpSecurity

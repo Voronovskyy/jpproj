@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Service("alive")
 @Slf4j
@@ -39,27 +41,25 @@ public class AliveStudentService implements StudentService {
     @Override
     public StudentDto save(StudentDto studentDto) {
         Student entity = studentMapper.toEntity(studentDto);
-//        Student build = Student.builder().age(13).build();
         return studentMapper.toDto(studentRepository.save(entity));
     }
 
     @Override
-    public List<StudentDto> getStudentByNameAndAge(String name, Integer age) {
-//        EntityManager entityManager;
-//        List<StudentDto> list = studentRepository.getStudentByNameAndAge(name,age);
-////        Query query = new Query();
-//        return list;
-//        List<StudentDto> resultList = studentRepository.getStudentByNameAndAge(name,age).
-//                stream().
-
-        return null;
-
+    public StudentDto getByCity(String city) {
+        List<StudentDto> resultList = studentRepository.getByCity(city);
+        return (StudentDto) resultList
+                .stream()
+                .map(a->studentMapper.toEntity(a))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public StudentDto getByCity(String city) {
-//        return studentRepository.getByCity(city);
-//        log.
-        return null;
+    public StudentDto getStudentByNameAndAge(String name, Integer age) {
+        List<StudentDto> resultList = studentRepository.getStudentByNameAndAge(name,age);
+        return (StudentDto) resultList
+                .stream()
+                .map(a->studentMapper.toEntity(a))
+                .collect(Collectors.toList());
     }
+
 }

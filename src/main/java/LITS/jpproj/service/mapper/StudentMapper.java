@@ -12,28 +12,6 @@ public class StudentMapper {
     @Autowired
     private ModelMapper mappper;
 
-//    public Student toEntity(StudentDto studentDto){
-//        Student student = new Student();
-//        student.setId(studentDto.getId());
-//        student.setUsername(studentDto.getUsername());
-//        student.setAge(studentDto.getAge());
-//        student.setFaculty(studentDto.getFaculty());
-//        student.setCourse(studentDto.getCourse());
-//
-//        return student;
-//    }
-//
-//    public StudentDto toDto(Student student){
-//        StudentDto studentDto = new StudentDto();
-//        studentDto.setId(student.getId());
-//        studentDto.setUsername(student.getUsername());
-//        studentDto.setAge(student.getAge());
-//        studentDto.setFaculty(student.getFaculty());
-//        studentDto.setCourse(student.getCourse());
-//
-//        return studentDto;
-//    }
-
     public Student toEntity(StudentDto studentDto){
         return mappper.map(studentDto,Student.class);
     }

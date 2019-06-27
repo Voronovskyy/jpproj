@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service("dead")
 public class DeadStudentService implements StudentService {
@@ -42,12 +43,20 @@ public class DeadStudentService implements StudentService {
     }
 
     @Override
-    public List<StudentDto> getStudentByNameAndAge(String name, Integer age) {
-        return null;
+    public StudentDto getByCity(String city) {
+        List<StudentDto> resultList = studentRepository.getByCity(city);
+        return (StudentDto) resultList
+                .stream()
+                .map(a->studentMapper.toEntity(a))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public StudentDto getByCity(String city) {
-        return null;
+    public StudentDto getStudentByNameAndAge(String name, Integer age) {
+        List<StudentDto> resultList = studentRepository.getStudentByNameAndAge(name,age);
+        return (StudentDto) resultList
+                .stream()
+                .map(a->studentMapper.toEntity(a))
+                .collect(Collectors.toList());
     }
 }

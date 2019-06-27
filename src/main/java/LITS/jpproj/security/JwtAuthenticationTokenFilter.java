@@ -1,6 +1,7 @@
 package LITS.jpproj.security;
 
 import LITS.jpproj.service.TokenService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
+@Slf4j
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private final Log logger = LogFactory.getLog(this.getClass());
 
@@ -27,9 +29,10 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+
         Long accountId =  Optional.ofNullable(request.getHeader(HttpHeaders.AUTHORIZATION)).filter(this::containsBearerToken)
                 .map(token -> token.substring(BEARER_TYPE.length() + 1)).map(token -> tokenService.parseToken(token)).orElse(null);
-
+        log.debug("Exception in class JwtAuthenticationTokenFilter (doFilterInternal)");
         logger.info("checking authentication for user " + accountId);
 
         if (accountId != null && SecurityContextHolder.getContext().getAuthentication() == null) {

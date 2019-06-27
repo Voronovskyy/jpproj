@@ -2,6 +2,7 @@ package LITS.jpproj.service.impl;
 
 import LITS.jpproj.service.TokenService;
 import io.jsonwebtoken.*;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.nio.charset.StandardCharsets;
 
 @Service
+@Slf4j
 public class JwtTokenService implements TokenService {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -36,9 +38,11 @@ public class JwtTokenService implements TokenService {
 
             return body.get(userIdClaim, Long.class);
         } catch (ExpiredJwtException e) {
+            log.debug("Exception in class JwtTokenService (parseToken(ExpiredJwtException))");
             logger.debug("JWT token has expired: {}", e.getMessage());
             throw new CredentialsExpiredException("JWT is not valid", e);
         } catch (JwtException e) {
+            log.debug("Exception in class JwtTokenService (parseToken(JwtException))");
             logger.debug("JWT is not valid: {}", e.getMessage());
             throw new BadCredentialsException("JWT is not valid", e);
         }
