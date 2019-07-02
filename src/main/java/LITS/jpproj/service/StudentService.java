@@ -6,13 +6,16 @@ import java.util.List;
 
 
 public interface StudentService {
+
     StudentDto getById(Integer id);
 
     List<StudentDto> getAllStudents();
 
     StudentDto save(StudentDto student);
 
-    StudentDto getStudentByNameAndAge(String name, Integer id);
+    List<StudentDto> getStudentByUsername(String username);
 
-    StudentDto getByCity(String city);
+    List<StudentDto> getByCity(String city);
+
+    List<StudentDto> getByUsernameAndAge(String username, Integer age);
 }

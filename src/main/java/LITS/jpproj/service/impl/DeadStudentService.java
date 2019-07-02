@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service("dead")
@@ -43,22 +44,28 @@ public class DeadStudentService implements StudentService {
     }
 
     @Override
-    public StudentDto getByCity(String city) {
-//        List<StudentDto> resultList = studentRepository.getByCity(city);
-//        return (StudentDto) resultList
-//                .stream()
-//                .map(a->studentMapper.toEntity(a))
-//                .collect(Collectors.toList());
-        return null;
+    public List<StudentDto> getByCity(String city) {
+        List<Student> resultList = studentRepository.getByCity(city);
+        return resultList
+                .stream().filter(Objects::nonNull)
+                .map(a->studentMapper.toDto(a))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public StudentDto getStudentByNameAndAge(String name, Integer age) {
-//        List<StudentDto> resultList = studentRepository.getStudentByNameAndAge(name,age);
-//        return (StudentDto) resultList
-//                .stream()
-//                .map(a->studentMapper.toEntity(a))
-//                .collect(Collectors.toList());
-        return null;
+    public List<StudentDto> getStudentByUsername(String username) {
+        List<Student> resultList = studentRepository.getStudentByUsername(username);
+        return resultList
+                .stream().filter(Objects::nonNull)
+                .map(a->studentMapper.toDto(a))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<StudentDto> getByUsernameAndAge(String username, Integer age) {
+        List<Student> resultList = studentRepository.getByUsernameAndAge(username,age);
+        return resultList.stream().filter(Objects::nonNull)
+                .map(a->studentMapper.toDto(a))
+                .collect(Collectors.toList());
     }
 }

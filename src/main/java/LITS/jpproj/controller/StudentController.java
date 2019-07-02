@@ -37,19 +37,25 @@ public class StudentController {
 
     @GetMapping(value = "/users")
     @ApiOperation("getPersonById")
-    public StudentDto getPersonById(@RequestParam Integer id){
+    public StudentDto getStudentById(@RequestParam Integer id){
         return aliveStudentService.getById(id);
     }
 
-    @GetMapping(value = "/usersByNameAndAge")
+    @GetMapping(value = "/getUserByName")
     @ApiOperation("getStudentByNameAndAge")
-    public List<StudentDto> getStudentByNameAndAge(@RequestParam String name , @RequestParam Integer age){
-        return (List<StudentDto>) aliveStudentService.getStudentByNameAndAge(name,age);
+    public List<StudentDto> getStudentByUsername(@RequestParam String username){
+        return aliveStudentService.getStudentByUsername(username);
     }
 
     @GetMapping(value = "/getUserByCity")
     @ApiOperation("getUserByCity")
-    public StudentDto getByCity(@RequestParam String city){
+    public List<StudentDto> getStudentByCity(@RequestParam String city){
         return aliveStudentService.getByCity(city);
     }
+
+    @GetMapping(value = "/getUserByUsernameAndAge")
+    public List<StudentDto> getStudentByUsernameAndAge(@RequestParam String username, Integer age){
+        return aliveStudentService.getByUsernameAndAge(username,age);
+    }
+
 }

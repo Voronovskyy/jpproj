@@ -1,4 +1,8 @@
 package LITS.jpproj.repository;
 
-public class PetRepository {
+import LITS.jpproj.entity.Pet;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface PetRepository extends MongoRepository<Pet,String > {
+
 }
