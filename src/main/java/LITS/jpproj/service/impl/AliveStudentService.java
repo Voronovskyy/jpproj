@@ -4,6 +4,7 @@ import LITS.jpproj.dtos.StudentDto;
 import LITS.jpproj.entity.Student;
 import LITS.jpproj.repository.StudentRepository;
 import LITS.jpproj.service.StudentService;
+import LITS.jpproj.service.mapper.PersonNotFoundException;
 import LITS.jpproj.service.mapper.StudentMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,16 @@ public class AliveStudentService implements StudentService {
 
     @Override
     public StudentDto getById(Integer id) {
-        return studentMapper.toDto(studentRepository.getOne(id));
-    }
+        Student one = studentRepository.findById(id).orElseThrow(()->new PersonNotFoundException("User with id "+id+" not found"));
 
+        return studentMapper.toDto(one);
+
+    }
+    
+//toDo change methods
     @Override
     public List<StudentDto> getAllStudents() {
-        List<Student> list = studentRepository.findAll();
+        List<Student> list = (List<Student>) studentRepository.findAll();
         List<StudentDto> resultList = new ArrayList<>();
         for (Student student :list) {
             resultList.add(studentMapper.toDto(student));
