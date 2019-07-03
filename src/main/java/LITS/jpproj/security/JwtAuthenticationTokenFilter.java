@@ -43,10 +43,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 
-        else {
-            System.out.println("Problem tyt");
-        }
-
         chain.doFilter(request, response);
     }
     private boolean containsBearerToken(String authHeader) {

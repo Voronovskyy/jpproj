@@ -30,9 +30,8 @@ public class AliveStudentService implements StudentService {
         Student one = studentRepository.findById(id).orElseThrow(()->new PersonNotFoundException("User with id "+id+" not found"));
 
         return studentMapper.toDto(one);
-
     }
-    
+
 //toDo change methods
     @Override
     public List<StudentDto> getAllStudents() {
