@@ -20,10 +20,4 @@ public class StudentMapper {
         return mappper.map(student,StudentDto.class);
     }
 
-    private void test(){
-        Student student = new Student();
-        StudentDto studentDto = new StudentDto();
-        mappper.map(student,studentDto);
-    }
-
 }

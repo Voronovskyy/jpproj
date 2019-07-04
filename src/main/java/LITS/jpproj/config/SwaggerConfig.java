@@ -51,10 +51,6 @@ public class SwaggerConfig {
                 "http://mysite.com",
                 vext);
 
-
-
-
-
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo)
                 .pathMapping("/")
