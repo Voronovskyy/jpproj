@@ -66,5 +66,4 @@ public class StudentControllerIntegrationTest {
                 .andExpect((ResultMatcher) jsonPath("$.name").value("somePerson"));
     }
 
-
 }
